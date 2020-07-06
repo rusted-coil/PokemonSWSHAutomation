@@ -50,6 +50,8 @@ namespace PokemonAutomation
         private uint day_count;
         private DateTime current_date;
 
+        private bool m_IsUpdateReady = false;
+
 
         public PokemonAutomation()
         {
@@ -677,6 +679,19 @@ namespace PokemonAutomation
             releaseButton(ButtonType.A);
             await Task.Delay(500);
 
+            // 本体更新スキップ
+            if (m_IsUpdateReady)
+            {
+                pressButton(ButtonType.UP);
+                await Task.Delay(50);
+                releaseButton(ButtonType.UP);
+                await Task.Delay(500);
+                pressButton(ButtonType.A);
+                await Task.Delay(50);
+                releaseButton(ButtonType.A);
+                await Task.Delay(1500);
+            }
+
             pressButton(ButtonType.B);
             await Task.Delay(100);
             releaseButton(ButtonType.B);
@@ -1043,6 +1058,67 @@ namespace PokemonAutomation
                 token_source.Cancel();
             }
             DayComboBox.Enabled = true;
+        }
+
+        private async void CheckboxReset_CheckedChanged(object sender, EventArgs e)
+        {
+            if (CheckboxReset.Checked)
+            {
+                try
+                {
+                    token_source = new CancellationTokenSource();
+                    cancel_token = token_source.Token;
+
+                    await Task.Run(async () =>
+                    {
+                        pressButton(ButtonType.HOME);
+                        await Task.Delay(100);
+                        releaseButton(ButtonType.HOME);
+                        await Task.Delay(1000);
+                        pressButton(ButtonType.X);
+                        await Task.Delay(50);
+                        releaseButton(ButtonType.X);
+                        await Task.Delay(300);
+                        pressButton(ButtonType.A);
+                        await Task.Delay(50);
+                        releaseButton(ButtonType.A);
+                        await Task.Delay(2000);
+                        for (int i = 0; i < 10; ++i)
+                        {
+                            // 本体更新スキップ
+                            if (m_IsUpdateReady)
+                            {
+                                pressButton(ButtonType.UP);
+                                await Task.Delay(50);
+                                releaseButton(ButtonType.UP);
+                                await Task.Delay(500);
+                            }
+
+                            pressButton(ButtonType.A);
+                            await Task.Delay(50);
+                            releaseButton(ButtonType.A);
+                            await Task.Delay(300);
+                        }
+                        await Task.Delay(14000);
+                        pressButton(ButtonType.A);
+                        await Task.Delay(50);
+                        releaseButton(ButtonType.A);
+                        await Task.Delay(9000);
+                        pressButton(ButtonType.A);
+                        await Task.Delay(50);
+                        releaseButton(ButtonType.A);
+                        await Task.Delay(300);
+                    }, cancel_token);
+                }
+                catch (System.Threading.Tasks.TaskCanceledException exception)
+                {
+                }
+                CheckboxReset.Checked = false;
+            }
+            else
+            {
+                token_source.Cancel();
+            }
         }
     }
 }
