@@ -3,12 +3,13 @@ using System.IO.Ports;
 using System.Threading;
 using System.Windows.Forms;
 using System.Threading.Tasks;
+using System.Collections.Generic;
 
 namespace PokemonAutomation
 {
     public partial class PokemonAutomation : Form
     {
-        enum ButtonType : byte
+        public enum ButtonType : byte
         {
             RIGHT = 0,
             LEFT,
@@ -32,13 +33,13 @@ namespace PokemonAutomation
             MINUS
         }
 
-        enum ButtonState : byte
+        public enum ButtonState : byte
         {
             PRESS = 0,
             RELEASE
         }
 
-        enum Stick : byte
+        public enum Stick : byte
         {
             MIN = 0,
             CENTER = 128,
@@ -914,6 +915,94 @@ namespace PokemonAutomation
                 current_date = new DateTime(year, month, day, 0, 0, 0);
                 updateDateLabel();
             }
+        }
+
+        private async void CheckboxTower_CheckedChanged(object sender, EventArgs e)
+        {
+            DayComboBox.Enabled = false;
+            if (CheckboxTower.Checked)
+            {
+                List<AsyncMacroTask.Operation> taskList = new List<AsyncMacroTask.Operation>();
+
+                try
+                {
+                    token_source = new CancellationTokenSource();
+                    cancel_token = token_source.Token;
+
+                    await Task.Run(async () =>
+                    {
+                        while (true)
+                        {
+                            if (cancel_token.IsCancellationRequested)
+                            {
+                                return;
+                            }
+                            // A A A A 
+                            for (int i = 0; i < 4; ++i)
+                            {
+                                pressButton(ButtonType.A);
+                                await Task.Delay(50);
+                                releaseButton(ButtonType.A);
+                                await Task.Delay(1500);
+                            }
+                            // ↑
+                            pressButton(ButtonType.UP);
+                            await Task.Delay(50);
+                            releaseButton(ButtonType.UP);
+                            await Task.Delay(1500);
+                            // A A 
+                            for (int i = 0; i < 2; ++i)
+                            {
+                                pressButton(ButtonType.A);
+                                await Task.Delay(50);
+                                releaseButton(ButtonType.A);
+                                await Task.Delay(1500);
+                            }
+                            // ↑
+                            pressButton(ButtonType.UP);
+                            await Task.Delay(50);
+                            releaseButton(ButtonType.UP);
+                            await Task.Delay(1500);
+                            // A A A A
+                            for (int i = 0; i < 4; ++i)
+                            {
+                                pressButton(ButtonType.A);
+                                await Task.Delay(50);
+                                releaseButton(ButtonType.A);
+                                await Task.Delay(1500);
+                            }
+                            // B
+                            pressButton(ButtonType.B);
+                            await Task.Delay(50);
+                            releaseButton(ButtonType.B);
+                            await Task.Delay(1500);
+                            // ↑
+                            pressButton(ButtonType.UP);
+                            await Task.Delay(50);
+                            releaseButton(ButtonType.UP);
+                            await Task.Delay(1500);
+                            // R R
+                            for (int i = 0; i < 2; ++i)
+                            {
+                                pressButton(ButtonType.R);
+                                await Task.Delay(50);
+                                releaseButton(ButtonType.R);
+                                await Task.Delay(50);
+                            }
+                        }
+                    }, cancel_token);
+
+                }
+                catch (System.Threading.Tasks.TaskCanceledException exception)
+                {
+                }
+                CheckboxTower.Checked = false;
+            }
+            else
+            {
+                token_source.Cancel();
+            }
+            DayComboBox.Enabled = true;
         }
 
         private async void CheckboxLotoID_CheckedChanged(object sender, EventArgs e)

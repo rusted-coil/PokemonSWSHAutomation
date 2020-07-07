@@ -79,6 +79,7 @@
 			this.label4 = new System.Windows.Forms.Label();
 			this.CheckboxPlusNDays = new System.Windows.Forms.CheckBox();
 			this.CheckboxReset = new System.Windows.Forms.CheckBox();
+			this.CheckboxTower = new System.Windows.Forms.CheckBox();
 			this.SuspendLayout();
 			// 
 			// up
@@ -719,11 +720,24 @@
 			this.CheckboxReset.UseVisualStyleBackColor = true;
 			this.CheckboxReset.CheckedChanged += new System.EventHandler(this.CheckboxReset_CheckedChanged);
 			// 
+			// CheckboxTower
+			// 
+			this.CheckboxTower.Appearance = System.Windows.Forms.Appearance.Button;
+			this.CheckboxTower.Location = new System.Drawing.Point(623, 319);
+			this.CheckboxTower.Name = "CheckboxTower";
+			this.CheckboxTower.Size = new System.Drawing.Size(104, 34);
+			this.CheckboxTower.TabIndex = 56;
+			this.CheckboxTower.Text = "バトルタワー";
+			this.CheckboxTower.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+			this.CheckboxTower.UseVisualStyleBackColor = true;
+			this.CheckboxTower.Click += new System.EventHandler(this.CheckboxTower_CheckedChanged);
+			// 
 			// PokemonAutomation
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(815, 470);
+			this.Controls.Add(this.CheckboxTower);
 			this.Controls.Add(this.CheckboxReset);
 			this.Controls.Add(this.CheckboxPlusNDays);
 			this.Controls.Add(this.label4);
@@ -833,6 +847,7 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.CheckBox CheckboxPlusNDays;
         private System.Windows.Forms.CheckBox CheckboxReset;
-    }
+		private System.Windows.Forms.CheckBox CheckboxTower;
+	}
 }
 
