@@ -80,6 +80,7 @@
 			this.CheckboxPlusNDays = new System.Windows.Forms.CheckBox();
 			this.CheckboxReset = new System.Windows.Forms.CheckBox();
 			this.CheckboxTower = new System.Windows.Forms.CheckBox();
+			this.ButtonCurrentDaySet = new System.Windows.Forms.Button();
 			this.SuspendLayout();
 			// 
 			// up
@@ -473,7 +474,7 @@
 			// LabelDate
 			// 
 			this.LabelDate.AutoSize = true;
-			this.LabelDate.Location = new System.Drawing.Point(556, 81);
+			this.LabelDate.Location = new System.Drawing.Point(556, 87);
 			this.LabelDate.Name = "LabelDate";
 			this.LabelDate.Size = new System.Drawing.Size(31, 12);
 			this.LabelDate.TabIndex = 42;
@@ -581,7 +582,7 @@
             "2058",
             "2059",
             "2060"});
-			this.YearComboBox.Location = new System.Drawing.Point(558, 47);
+			this.YearComboBox.Location = new System.Drawing.Point(558, 53);
 			this.YearComboBox.Name = "YearComboBox";
 			this.YearComboBox.Size = new System.Drawing.Size(91, 20);
 			this.YearComboBox.TabIndex = 46;
@@ -590,7 +591,7 @@
 			// label1
 			// 
 			this.label1.AutoSize = true;
-			this.label1.Location = new System.Drawing.Point(556, 32);
+			this.label1.Location = new System.Drawing.Point(556, 38);
 			this.label1.Name = "label1";
 			this.label1.Size = new System.Drawing.Size(28, 12);
 			this.label1.TabIndex = 47;
@@ -599,7 +600,7 @@
 			// label2
 			// 
 			this.label2.AutoSize = true;
-			this.label2.Location = new System.Drawing.Point(659, 32);
+			this.label2.Location = new System.Drawing.Point(659, 38);
 			this.label2.Name = "label2";
 			this.label2.Size = new System.Drawing.Size(36, 12);
 			this.label2.TabIndex = 48;
@@ -608,7 +609,7 @@
 			// label3
 			// 
 			this.label3.AutoSize = true;
-			this.label3.Location = new System.Drawing.Point(735, 32);
+			this.label3.Location = new System.Drawing.Point(735, 38);
 			this.label3.Name = "label3";
 			this.label3.Size = new System.Drawing.Size(25, 12);
 			this.label3.TabIndex = 49;
@@ -630,7 +631,7 @@
             "10",
             "11",
             "12"});
-			this.MonthComboBox.Location = new System.Drawing.Point(661, 47);
+			this.MonthComboBox.Location = new System.Drawing.Point(661, 53);
 			this.MonthComboBox.Name = "MonthComboBox";
 			this.MonthComboBox.Size = new System.Drawing.Size(66, 20);
 			this.MonthComboBox.TabIndex = 50;
@@ -671,7 +672,7 @@
             "29",
             "30",
             "31"});
-			this.DayComboBox.Location = new System.Drawing.Point(737, 47);
+			this.DayComboBox.Location = new System.Drawing.Point(737, 53);
 			this.DayComboBox.Name = "DayComboBox";
 			this.DayComboBox.Size = new System.Drawing.Size(66, 20);
 			this.DayComboBox.TabIndex = 51;
@@ -732,11 +733,22 @@
 			this.CheckboxTower.UseVisualStyleBackColor = true;
 			this.CheckboxTower.Click += new System.EventHandler(this.CheckboxTower_CheckedChanged);
 			// 
+			// ButtonCurrentDaySet
+			// 
+			this.ButtonCurrentDaySet.Location = new System.Drawing.Point(557, 9);
+			this.ButtonCurrentDaySet.Name = "ButtonCurrentDaySet";
+			this.ButtonCurrentDaySet.Size = new System.Drawing.Size(92, 26);
+			this.ButtonCurrentDaySet.TabIndex = 57;
+			this.ButtonCurrentDaySet.Text = "現在の日付";
+			this.ButtonCurrentDaySet.UseVisualStyleBackColor = true;
+			this.ButtonCurrentDaySet.Click += new System.EventHandler(this.ButtonCurrentDaySet_Click);
+			// 
 			// PokemonAutomation
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(815, 470);
+			this.Controls.Add(this.ButtonCurrentDaySet);
 			this.Controls.Add(this.CheckboxTower);
 			this.Controls.Add(this.CheckboxReset);
 			this.Controls.Add(this.CheckboxPlusNDays);
@@ -848,6 +860,7 @@
         private System.Windows.Forms.CheckBox CheckboxPlusNDays;
         private System.Windows.Forms.CheckBox CheckboxReset;
 		private System.Windows.Forms.CheckBox CheckboxTower;
+		private System.Windows.Forms.Button ButtonCurrentDaySet;
 	}
 }
 

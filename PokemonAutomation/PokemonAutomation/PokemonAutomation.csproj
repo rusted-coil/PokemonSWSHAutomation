@@ -49,6 +49,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AsyncMacroTask.cs" />
     <Compile Include="Form.cs">
       <SubType>Form</SubType>
     </Compile>

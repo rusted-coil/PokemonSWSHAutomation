@@ -1188,7 +1188,7 @@ namespace PokemonAutomation
                             releaseButton(ButtonType.A);
                             await Task.Delay(300);
                         }
-                        await Task.Delay(14000);
+                        await Task.Delay(16000);
                         pressButton(ButtonType.A);
                         await Task.Delay(50);
                         releaseButton(ButtonType.A);
@@ -1196,7 +1196,6 @@ namespace PokemonAutomation
                         pressButton(ButtonType.A);
                         await Task.Delay(50);
                         releaseButton(ButtonType.A);
-                        await Task.Delay(300);
                     }, cancel_token);
                 }
                 catch (System.Threading.Tasks.TaskCanceledException exception)
@@ -1209,5 +1208,10 @@ namespace PokemonAutomation
                 token_source.Cancel();
             }
         }
-    }
+
+		private void ButtonCurrentDaySet_Click(object sender, EventArgs e)
+		{
+
+		}
+	}
 }
